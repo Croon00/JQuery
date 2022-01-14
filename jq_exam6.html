@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>jQuery 선택자</title>
+    <!-- CDN 방식으로 jquery 연결 -->
+    <!-- https://developers.google.com/speed/libraries#jquery -->
+    <!-- code.jquery.com -->
+    <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script> -->
+
+    <!-- 로컬상의 jquery 파일 연결 -->
+    <script src="jquery.min.js"></script>
+
+    <!-- 클래스 정의 -->
+    <style>
+       .boxA { width:100px; height:100px; 
+                background-color: gold; 
+                border: 1px solid black;
+                position: relative;
+                
+            }
+        .boxA, .boxB, .boxC { width:100px; height:100px; 
+                background-color: gold; 
+                border: 1px solid black;
+                position: relative;
+                margin:10px 0;
+
+        }
+        .count {
+            width:30px; height:30px; 
+            background-color: gold; 
+            border: 1px solid black;
+            position: relative;
+
+        }
+        
+
+    </style>
+</head>
+<body>
+    <h1>jQuery Effect</h1>
+    <hr>
+    <!-- (div#box$>h2{box$})*3 -->
+    <div id="box1">
+        <h2>box1</h2>
+        <div class="boxA">boxA</div>
+        
+    </div>
+    <div id="box2">
+        <h2>box2</h2>
+        <div>
+            <!-- button{click$}*3 -->
+            <button>click1</button>
+            <button>click2</button>
+            <button>click3</button>
+        </div>
+        <div class="boxA">boxA</div>
+        <div class="boxB">boxB</div>
+        <div class="boxC">boxC</div>
+    </div>
+
+    </div>
+    <div id="box3">
+        <h2>box3</h2>
+        <div>
+            <!-- button{click$}*3 -->
+            <button>+</button>
+            <button>-</button>
+        </div>
+        <div class="count">
+            1
+        </div>
+        
+    </div>
+
+    <div id="box4">
+        <h2>box4</h2>
+        <div>
+            <!-- button{click$}*3 -->
+            <button>play</button>
+        </div>
+        <div class="boxA">
+            Box
+        </div>
+        
+    </div>
+
+
+
+
+    <script>
+        // $(선택자).animate(css속성)
+        //   $('#box3').animate
+
+        $(function(){
+            // #box1. boxA
+            // 3시 방향 --> 정지 --> 9시 방향
+            // left : x좌표값 3시방향은 양의 값, 9시 방향은 음의 값
+            // top : x좌표값 12시 방향은 음의 값, 6시 방향은 양의 값
+            
+            // 대각선 5시 방향
+            // $('#box1 .boxA')
+            //     .animate({'left':'200px'}, 'slow')
+            //     .delay(1000)
+            //     .animate({'left':'0px'}, 'slow')
+            //     .delay(1000)
+            //     .animate({'top':'200px'}, 'slow')
+            //     .delay(1000)
+            //     .animate({'top':'0px'}, 'slow');
+
+            $('#box1 .boxA')
+                .animate({'left':'100px','top':'100px'}, 'slow')
+                .delay(1000)
+                .animate({'left':'0px','top':'0px'}, 'slow')
+                .delay(1000)
+                .animate({'left':'100px','top':'-100px'}, 'slow')
+                .delay(1000)
+                .animate({'left':'0px','top':'0px'}, 'slow')
+
+            // 버튼을 클릭하면 박스의 가로길이가 늘어난다.
+            // 정지 => 가로길이가 원래 크기로 줄어든다.
+            $('#box2 button:eq(0)').click( function(){
+                $('#box2 .boxA')
+                    .animate({'width':'200px'}, 'slow')
+                    .delay(1500)
+                    .animate({'width': '50px'}, 'fast');
+            })
+            $('#box2 button:eq(1)').click( function() {
+            $('#box2 .boxB')
+                .animate({'height':'200px', 'left':'200px'}, 'slow')
+                .delay(500)
+                .animate({'height':'100px', 'left':'0px'}, 'slow');
+            });
+            
+            $('#box2 button:eq(2)').click( function() {
+            $('#box2 .boxC')
+                .animate({'width':'200px', 'height':'200px'}, 
+                'slow',
+                function(){
+                    alert('Hello world')
+                    $(this).css('background-color','orange')
+                    $(this).text('Hello Oracle');
+
+                });
+               
+            });
+
+            // 퀴즈1
+            // #box3에서
+            // 버튼을 클릭할때마다
+            // 1~5까지 카운팅되게 프로그래밍하여라.
+            var num = 1;
+            $('#box3 button:eq(0)').click(function(){
+                
+                $('#box3 .count')
+                .text(num++)
+                
+
+            });
+            
+            $('#box3 button:eq(1)').click(function(){
+                $('#box3 .count'),
+                function(){
+                    $(this).text('2');
+                }
+
+            });
+
+
+
+            // 퀴즈2
+            // #box4 에서
+            // play 버튼을 클릭하면
+            // 시계방향으로 위치가 이동되게 프로그래밍 하여라.
+            $('#box4 button:eq(0)').click(function(){
+                $('#box4 .boxA')
+                .animate({'left':'100px'}, 'slow')
+                .delay(1000)
+                .animate({'left':'100px','top':'100px'}, 'slow')
+                .delay(1000)
+                .animate({'left':'0px','top':'100px'}, 'slow')
+                .delay(1000)
+                .animate({'left':'0px','top':'0px'}, 'slow');
+            })
+
+        });
+            // 크기변경 -width, height 
+            
+
+
+        // jqm end
+        
+    </script>
+    
+</body>
+</html>

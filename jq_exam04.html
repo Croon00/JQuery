@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>jQuery 선택자</title>
+    <!-- CDN 방식으로 jquery 연결 -->
+    <!-- https://developers.google.com/speed/libraries#jquery -->
+    <!-- code.jquery.com -->
+    <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script> -->
+
+    <!-- 로컬상의 jquery 파일 연결 -->
+    <script src="jquery.min.js"></script>
+
+    <!-- 클래스 정의 -->
+    <style>
+       .btnStyle {
+           border:1px solid black; 
+           padding:5px 10px; 
+           background-color: lightslategray;
+           color:white;
+           border-radius: 5px;
+       }
+    </style>
+</head>
+<body>
+    <h1>jQuery 이벤트</h1>
+    <hr>
+    <div id="box1">
+        <button>click1</button>
+        <button>click2</button>
+        <button>off</button>
+    </div>
+    <hr>
+    <div id="box2">
+       <img src="smile/cool.png" alt="g1">
+       <img src="smile/ewhz.png" alt="g2">
+       <p>이미지 설명</p>
+    </div>
+
+
+    <script>
+        $(function() {
+            // 이벤트 적용 문법 - 1개의 이벤트 적용 
+            // click, mouseover, mouseout, blur, focus..
+            // this : 선택자 대체용 
+            /*
+                $(선택자).이벤트목록( function() {
+                    // 실행명령문 
+                });
+            */
+
+            // #box1 button:eq(0)
+            // 클릭하면 콘솔창, 경고상자에 메세지 출력 
+            $('#box1 button:eq(0)').click(function() {
+                    console.log('Hello world');
+                    alert('Hello jQuery');
+            });
+
+            // #box1 button:eq(1)
+            // mouseover 이벤트시 this에 css 적용 
+            $('#box1 button:eq(1)').css({'background-color':'white', 'color':'black'});
+            
+            // $('#box1 button:eq(1)').mouseover(function() {
+            //         $(this)
+            //             .css({'background-color':'black', 'color':'white'});
+            // });
+            // $('#box1 button:eq(1)').mouseout(function() {
+            //         $(this)
+            //             .css({'background-color':'white', 'color':'black'});
+            // });
+
+            // 다중 이벤트 =>  하나의 선택자에 적용 
+            // mouseover / mouseout / click
+            $('#box1 button:eq(1)')
+                .mouseover(function() {
+                    $(this)
+                        .css({'background-color':'black', 'color':'white'});
+                }).mouseout(function() {
+                    $(this)
+                        .css({'background-color':'white', 'color':'black'});
+                }).click(function() {
+                    alert('Hello world');
+                });
+
+            // #box1 button:eq(2) 토글 기능 
+            $('#box1 button:eq(2)').click(function() {
+                $(this).toggleClass('btnStyle');
+                console.log('클래스 적용 =>', $(this).hasClass('btnStyle'));
+                console.log($(this).text());
+                var flag = $(this).hasClass('btnStyle');
+                if (flag) {
+                    $(this).text('on');
+                } else {
+                    $(this).text('off'); 
+                }
+            }); 
+
+            // 이미지 롤오버 
+            // #box2 [alt="g1"]
+            // opacity 0~1
+            $('#box2 [alt="g1"]').mouseover( function() {
+                $(this).css('opacity','0.5');
+            }).mouseout( function() {
+                $(this).css('opacity','1');
+            });
+
+            // #box2 [alt="g2"]
+            $('#box2 [alt="g2"]').click(function() {
+                // $('#box2 p').text('클릭했어요');
+                $('#box2 p').text($(this).attr('alt'));
+            });
+
+        });
+
+    </script>
+    
+</body>
+</html>

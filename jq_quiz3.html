@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>jQuery 퀴즈</title>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script> 
+  <style>
+    .btn {
+      border:1px solid darkslategray;
+      background-color: lightgoldenrodyellow;
+      padding:5px 10px;
+      border-radius: 3px;
+      text-decoration: none;
+    }
+    .btn:hover {
+      background-color: lightskyblue; 
+    }
+  </style>
+</head>
+<body>
+  <h1>jQuery 퀴즈</h1>
+  <hr>
+  <div id="quiz1">
+    <h2>quiz1</h2>
+  </div>
+  <hr>
+  <div id="quiz2">
+    <h2>quiz2</h2>
+    <div>
+      <button>button1</button>
+      <button>button2</button>
+      <button>button3</button>
+      <button>button4</button>
+      <button>button5</button>      
+    </div>
+  </div>
+  <hr>
+  <div id="quiz3">
+    <h2>quiz3</h2>
+    <!-- ul>(li>a{menu$})*5 -->
+    <ul>
+      <li><a href="">menu1</a></li>
+      <li><a href="">menu2</a></li>
+      <li><a href="">menu3</a></li>
+      <li><a href="">menu4</a></li>
+      <li><a href="">menu5</a></li>
+    </ul>
+  </div>
+
+  <script>
+    // attr(속성) : 속성 읽기 getter
+    // attr(속성, 값) : 속성 값 지정 setter 
+    // removeAttr(속성) : 속성제거 
+    // text() : 텍스트 getter, setter
+    // html() : html getter, setter
+    // val() : 텍스트필드 등의 value 값의 getter, setter
+
+    // 퀴즈1
+    // 2개의 숫자를 prompt() 함수를 이용하여 입력받고 사칙연산 결과를 
+    // #quiz1 안에 출력하여라. 
+
+    // 퀴즈2
+    // #quiz2 안에 삽입된 button 태그의 텍스트를 선언된 배열을 이용하여 
+    // 교체하여라.
+
+    // 퀴즈3
+    // #quiz3 안에 삽입된 a 태그의 텍스트와 href, title 속성값을 선언된 배열을 이용하여 
+    // 지정하여라 
+    // var link_arr = ['http://google.com', 'http://naver.com', 'http://youtube.com', 'http://daum.net', 'http://facebook.com'];
+    // ex ) 
+    // <a href='http://naver.com' target='_blank' title='http://naver.com로 이동하기'>
+    // http://naver.com </a>
+
+
+
+  </script>
+
+</body>
+</html>

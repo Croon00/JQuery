@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>jQuery 선택자</title>
+    <!-- CDN 방식으로 jquery 연결 -->
+    <!-- https://developers.google.com/speed/libraries#jquery -->
+    <!-- code.jquery.com -->
+    <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script> -->
+
+    <!-- 로컬상의 jquery 파일 연결 -->
+    <script src="jqm/jquery.min.js"></script>
+
+    <!-- 클래스 정의 -->
+    <style>
+       .boxA { width:100px; height:100px; 
+                background-color: gold; 
+                border: 1px solid black;
+                margin:10px}
+
+        .boxB { width:200px; height:200px; 
+                background-color: lightsteelblue; 
+                border: 1px solid black;}
+
+        .boxC { width:200px; height:200px; 
+                border: 1px solid black;
+                text-align: center; }    
+        
+        #picture { 
+            width:200px; height:200px; 
+            border: 1px solid black;
+            text-align: center; 
+            margin:20px 0;
+        }
+    </style>
+</head>
+<body>
+    <h1>jQuery Effect</h1>
+    <hr>
+    <div id="box1">
+        <button>click1</button>
+        <button>click2</button>
+        <div class="boxA">box A</div>
+        <div class="boxB">box B</div>
+    </div>
+    <hr>
+    <div id="box2">
+        <button>click toggle</button>
+        <div class="boxC"><img src="smile/cool.png" alt="cool"></div>
+        <div class="boxA">
+            <h2>box A</h2>
+        </div>
+        
+        <button>sliding toggle</button>
+        <div class="boxB">box B</div>
+
+        <button>callback test</button>
+        <div class="boxD">
+            <img src="smile/ewhz.png" alt="ewhz">
+        </div>
+
+    </div>
+
+    <hr>
+    <div id="box3">
+        <button>그림1</button>
+        <button>그림2</button>
+        <div id="picture">
+            <img src="smile/go.png" alt="go">
+            <p>go</p>            
+        </div>
+    </div>
+    <hr>
+
+
+
+
+    <script>
+        $(function() {
+            // $(선택자).이펙트메소드(속도, 콜백함수)
+            // 속도는 1000 => 1초 
+            // slow, fast
+
+            // $(선택자).hide(속도)
+            // $(선택자).show(속도)
+            // $(선택자).toggle(속도)
+            // $(선택자).delay(속도)
+
+            // 나타난다 => 지연시간 => 사라진다. 
+            // $('#box1 .boxA').hide(); 
+            // $('#box1 .boxA')
+            //     .show('slow')
+            //     .delay(2000)
+            //     .hide('slow');
+
+            // 버튼을 클릭하면 애니메이션 실행 
+            $('#box1 button:eq(0)').click(function() {
+                console.log('클릭');
+                $('#box1 .boxB').hide('slow');
+            });   
+            $('#box1 button:eq(1)').click(function() {
+                $('#box1 .boxB').show('slow');
+            }); 
+
+            // 버튼 클릭시 이미지 토글 
+            $('#box2 button:eq(0)').click(function() {
+                $('#box2 .boxC img').toggle('slow');
+            }); 
+
+            // $(선택자).fadeIn(속도키워드)
+            // $(선택자).fadeOut(속도키워드)
+            // 글자가 사라진다 => 지연시간 => 나타난다. ...
+            $('#box2 .boxA h2')
+                .fadeOut('slow')
+                .delay(1000)
+                .fadeIn('slow')
+                .delay(1000)
+                .fadeOut('slow')
+                .delay(1000)
+                .fadeIn('slow');
+
+            // $(선택자).slideUp(속도키워드)
+            // $(선택자).slideDown(속도키워드)
+            // $(선택자).slideToggle(속도키워드)    
+            $('#box2 button:eq(1)').click( function() {
+                $('#box2 .boxB').slideToggle('slow');
+            });
+
+            // $(선택자).effectMethod(속도, callback함수);
+            // 트랜지션효과후에 다른 명령을 실행할 때 사용 
+            /*
+              예) 
+              $(선택자).slideToggle('slow', function() {
+                    명령문... 
+              });
+            */
+
+            // 버튼을 클릭하면 
+            // 이미지가 사라지게한다. 
+            // 경고상자에 메세지를 출력한다. 
+            $('#box2 button:eq(2)').click( function() {
+                $('#box2 .boxD img').slideToggle('slow', function() {
+                    alert('Hello world');
+                });
+            });
+
+            // 이미지 갤러리 
+            // 버튼을 클릭하면 이미지가 표시되도록 한다. 
+            // 초기값 
+            $('#picture img').hide();
+            $('#picture p').hide();
+            $('#box3 button:eq(0)').click(function() {
+                // $('#picture img').show('slow');
+                // $('#picture p').slideDown('slow');
+                $('#picture img').hide('slow', function() {
+                    // attr(속성, 값)
+                    $(this).attr('src', 'smile/go.png');
+                    $('#picture p').text('go').show();
+                }).show('slow');
+            });
+
+            // 그림2 버튼을 클릭하면 그림과 글자가 교체되는 애니메이션 실행 
+            $('#box3 button:eq(1)').click(function() {
+                $('#picture img').hide('slow', function() {
+                    $(this).attr('src', 'smile/cool.png');
+                    $('#picture p').text('cool').show();
+                }).show('slow');
+            });
+
+
+        })
+    </script>
+    
+</body>
+</html>

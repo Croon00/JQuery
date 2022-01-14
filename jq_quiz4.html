@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>jQuery 퀴즈4</title>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <style>
+    #quiz2 input {
+      display: block;
+      margin: 10px;
+      border: 1px solid black;
+    }
+
+    .btn {
+      border: 1px solid darkslategray;
+      background-color: lightgoldenrodyellow;
+      padding: 5px 10px;
+      border-radius: 3px;
+    }
+
+    #quiz3 div { width:190px; height:190px; 
+    text-align: center; border:1px solid black; margin:20px }
+
+    .btn:hover {
+      background-color: lightskyblue;
+    };
+
+    .result {
+      border: 1px solid black;
+      padding: 10px;
+      width: 300px;
+      height: 50px
+    }
+  </style>
+</head>
+
+<body>
+  <h1>jQuery 퀴즈</h1>
+  <hr>
+  <form id="quiz1">
+    <h2>quiz1</h2>
+    <input type="text" placeholder="숫자1">
+    <input type="text" placeholder="숫자2"> <br> <br>
+    <input type="button" value="더하기">
+    <input type="button" value="빼기">
+    <input type="button" value="초기화">
+
+    <p class="result">
+    </p>
+  </form>
+  <hr>
+  <form id="quiz2">
+    <h2>quiz2</h2>
+    <input type="text" placeholder="userId">
+    <input type="password" placeholder="userPwd">
+    <input type="text" placeholder="userName">
+    <input type="text" placeholder="userAddr">
+    <input type="email" placeholder="userEmail">
+    <input type="url" placeholder="userUrl">
+  </form>
+  <hr>
+  <div id="quiz3">
+    <h2>quiz3</h2>
+    <div>
+      <img src="smile/boss.png" alt="boss">
+    </div>
+    <div> <img src="smile/angry.png" alt="angry"></div>
+    <div> <img src="smile/baffle.png" alt="baffle"></div>
+    </div>
+  </div>
+
+
+  <script>
+    // 퀴즈1 : #quiz1의 html 요소를 이용하여 
+    // 두수를 텍스트필드에 입력받아 결과를 출력하여라.
+
+    // 버튼을 클릭하면 텍스트필드 값을 저장한다.
+    // 명령어를 처리한다.
+    // 출력
+    $(function(){
+      $('#quiz1 [value = "더하기"]').click(function(){
+        console.log('click');
+        var n1 = Number($('#quiz1 [placeholder = "숫자1"]').val()); //val jQuer의 메소드
+        var n2 = Number($('#quiz1 [placeholder = "숫자2"]').val());
+        console.log(n1, n2);
+        console.log(n1 + n2);
+      $('#quiz1 .result').html('<strong>'+(n1+n2)+'</strong>'); // text나 html을 사용
+
+      });
+      });
+      $('#quiz1 [value = "초기화"]').click(function(){
+        console.log('click');
+        var n1 = Number($('#quiz1 [placeholder = "숫자1"]').val()); //val jQuer의 메소드
+        var n2 = Number($('#quiz1 [placeholder = "숫자2"]').val());
+      $('#quiz1 .result').html('결과');
+      
+    });
+
+
+    // 퀴즈2 : #quiz2의 텍스트필드 안을 클릭하면  
+    // 디자인이 변경되도록 프로그래밍하여라. 
+    // 텍스트필드에 적용하는 이벤트는 focus, blur이다. 
+    // #quiz2 input
+    $(function() {
+      $('#quiz2 input').css({'background-color':'lightpink'});
+      $('#quiz2 input').focus(function() {
+        $(this)
+          .css({'background-color':'lightblue'});
+      }).blur(function(){
+        $(this)
+          .css({'background-color':'lightpink'});
+      }); 
+
+    }); 
+
+    // 퀴즈3 : #quiz3의 이미지에 
+    // 롤오버 이벤트와 액션이 적용되도록 프로그래밍 하여라
+
+    $(function(){
+      $('#quiz3 [alt="boss"]').mouseover(function(){
+        $(this).css({'width':'150','height':'200'})
+      }).mouseout(function(){
+        $(this).css({'width':'300','height':'150'})
+      });
+    })
+  </script>
+
+
+
+</body>
+
+</html>

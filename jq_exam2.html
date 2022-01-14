@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>jQuery 설치</title>
+    <!-- CDN 방식으로 jQuery 연결 -->
+    <!-- https://developers.google.com/speed/libraries#jquery -->
+    <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script> -->
+
+    <!-- jquery 파일 연결 (local 상에서) -->
+    <script> src="JQuery/jquery.min.js"></script>
+</head>
+<body>
+    <h1>jQuery 선택자</h1>
+    <hr>
+    <h2>Hello world</h2>
+    <hr>
+    <div id="box1">
+        <h2>box1</h2>
+        <h3>H3 Tag</h3>
+        <ul>
+          <li><a href="">Menu1</a></li>
+          <li><a href="">Menu2</a></li>
+          <li><a href="">Menu3</a></li>
+          <li><a href="">Menu4</a></li>
+        </ul>
+        <dl>
+          <dt>제목</dt>
+          <dd>내용</dd>
+        </dl>
+    </div>
+    <hr>
+    <div id="box2">
+        <h2>box2</h2>
+        <h3>H3 Tag</h3>
+        <ul>
+          <li><a href="">Menu1</a></li>
+          <li><a href="">Menu2</a></li>
+          <li><a href="">Menu3</a></li>
+          <li><a href="">Menu4</a></li>
+        </ul>
+        <dl>
+          <dt>제목</dt>
+          <dd>내용</dd>
+        </dl>
+    </div>
+    <script>
+        // js 영역
+        $(function() {
+            // jq 영역
+            // h1 태그를 선택자로 지정해서 css 적용
+            $('h1')
+                .css('text-align','center')
+                .css('color','orange');
+            console.log($('h1'));
+
+            // #box1 a 선택자로 지정해서 css 적용
+            $('#box1 a').css({'color' : 'green'});
+
+
+        });
+        // jq선택자 
+
+            // css() 메서드 : jQuery 선택자한테 css 적용 
+
+            // CSS 메소드1 -  한개만 속성과 값을 넣는 경우 : setter  
+            // $('선택자').css('css속성','값');
+            // 메서드 체이닝
+            // $('선택자').css('css속성1','값1').css('css속성2','값2');
+
+            // CSS 메소드2 -  다중으로 속성과 값을 넣는 경우  : setter  
+            // $('선택자').css({'css속성1':'값1', 'css속성2':'값2'...});
+            /*
+                // css 선택자 지정방식 
+                선택자 {속성1:값1; 속성2:값2; ...}
+            */
+
+
+            // css 메소드3 - 적용되어 있는 css속성의 값 표시 : getter
+            // $('선택자').css('css속성');
+            
+
+    </script>
+    
+</body>
+</html>

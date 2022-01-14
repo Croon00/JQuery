@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>jQuery 선택자</title>
+    <!-- CDN 방식으로 jquery 연결 -->
+    <!-- https://developers.google.com/speed/libraries#jquery -->
+    <!-- code.jquery.com -->
+    <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script> -->
+
+    <!-- 로컬상의 jquery 파일 연결 -->
+    <script src="jquery.min.js"></script>
+
+    <!-- 클래스 정의 -->
+    <style>
+        .boxA {width: 100px; height: 100px; background-color: gold; border: 1px solid cadetblue;}
+        .boxB {width: 100px; height: 100px; background-color: lightgrey; border: 1px solid cadetblue;
+         margin:10px;}
+        .boxC {width: 200px; height:200px; border: 1px solid blue; text-align:center;}
+
+        #picture {
+            width:200px; height: 200px;
+            border: 1px solid black;
+            text-align: center;
+            margin:20px;
+
+        }
+
+       
+    </style>
+</head>
+<body>
+    <h1>jQuery Effect</h1>
+    <hr>
+    <div id="box1">
+        <button>click1</button>
+        <button>click2</button>
+        <div class="boxA">box A</div>
+        <div class="boxB">box B</div>
+    </div>
+    <hr>
+    <div id="box2">
+        <button>click toggle</button>
+        <div class="boxC"><img src="smile/baffle.png" alt="baffle"></div>
+        <div class="boxA"><h2>box A</h2></div>
+        <button>slideing toggle</button>
+        <div class="boxB">box B</div>
+
+        <button>callback test</button>
+        <div class="boxD">
+            <img src="smile/ewhz.png" alt="ewhz">
+        </div>
+
+        </div>
+        <hr>
+    <div id='box3'>
+        <button>그림1</button>
+        <button>그림2</button>
+        <div id='picture'>
+            <img src="smile/go.png" alt="go">
+            <img src="smile/angry.png" alt="angry">
+            <p class ="p1">go</p>
+            <p class ="p2">angry</p>
+        </div>
+
+        </div>
+
+
+
+    </div>
+    
+    <script>
+        $(function(){
+            // $(선택자).hide(속도키워드)
+            // $(선택자).show(속도키워드)
+            // $(선택자).toggle(속도키워드)
+            
+            // 나타난다 => 지연시간 => 사라진다.
+            $('#box1 .boxA').hide();
+            $('#box1 .boxA').show('slow').delay(2000).hide('slow');
+            
+            // 버튼을 클릭하면 효과 나타나게
+            $('#box1 button:eq(0)').click(function(){
+                console.log("클릭")
+                $('#box1 .boxB').hide('slow');
+            });
+            $('#box1 button:eq(1)').click(function(){
+                $('#box1 .boxB').show('slow');
+            }); 
+
+            $('#box2 button:eq(0)').click(function(){
+                console.log("클릭")
+                $('#box2 .boxC img').toggle('slow');
+            });
+
+            $('#box2 .boxA h2')
+                .fadeOut('slow')
+                .delay(1000)
+                .fadeIn('slow')
+                .delay(1000)
+                .fadeOut('fast')
+                .delay(3000)
+                .fadeIn('fast');
+            
+            $('#box2 button:eq(1)').click(function(){
+                $('#box2 .boxB').slideToggle('slow');
+            })
+
+            $('#box2 button:eq(2)').click(function(){
+                $('#box2 .boxD img').slideToggle('slow',function(){
+                    alert('Hellow world');
+                });
+            });
+
+            // 이미지 갤러리
+            // 버튼을 클릭하면 이미지가 교체되도록 한다.
+
+            $('#picture img').hide();
+            $('#picture p').hide();
+            $('#box3 button:eq(0)').click(function(){
+                $('#box3 [alt="angry"]').hide('slow');
+                $('#box3 .p2').hide('slow');
+                $('#box3 [alt="go"]').show('slow');
+                $('#box3 .p1').slideDown('slow');
+
+            })
+            $('#box3 button:eq(1)').click(function(){
+                $('#box3 [alt="go"]').hide('slow');
+                $('#box3 .p1').hide('slow');
+                $('#box3 [alt="angry"]').show('slow');
+                $('#box3 .p2').slideDown('slow');
+
+            })
+            
+            
+        });
+
+        // $(선택자).effectMethod(속도, callback함수);
+        // 트랜지션효과후에 다른 명령을 실행할 때 사용
+        /*
+
+        예)
+        $(선택자).slideToggle('slow',function(){
+            명령문.. 
+        });
+
+
+        */
+       
+        
+    </script>
+
+    
+</body>
+</html>

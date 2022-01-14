@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>jQuery 선택자</title>
+    <!-- CDN 방식으로 jquery 연결 -->
+    <!-- https://developers.google.com/speed/libraries#jquery -->
+    <!-- code.jquery.com -->
+    <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script> -->
+
+    <!-- 로컬상의 jquery 파일 연결 -->
+    <script src="jquery.min.js"></script>
+</head>
+<body>
+    <h1>jQuery 선택자</h1>
+    <hr>
+    <div id="box1">
+        <h2>box1</h2>
+        <h3>H3 Tag</h3>
+        <ul>
+          <li><a href="">Menu1</a></li>
+          <li><a href="">Menu2</a></li>
+          <li><a href="">Menu3</a></li>
+          <li><a href="">Menu4</a></li>
+        </ul>
+        <dl>
+          <dt>제목</dt>
+          <dd>내용</dd>
+        </dl>
+    </div>
+    <hr>
+    <div id="box2">
+        <h2>box2</h2>
+        <h3>H3 Tag</h3>
+        <ul>
+          <li><a href="">Menu1</a></li>
+          <li><a href="">Menu2</a></li>
+          <li><a href="">Menu3</a></li>
+          <li><a href="">Menu4</a></li>
+          <li><a href="">Menu5</a></li>
+          <li><a href="">Menu6</a></li>
+          <li><a href="">Menu7</a></li>
+        </ul>
+        <dl>
+          <dt>제목</dt>
+          <dd>내용</dd>
+        </dl>
+    </div>
+    <hr>
+    <!-- 폼문서 예제 -->
+    <form action="#" id="form1">
+        <input type="text" placeholder="userId"> <br>
+        <input type="password"  placeholder="userPwd"> <br>
+        <input type="text" placeholder="userName"> <br>
+        <input type="email" placeholder="useremail"> <br><br>
+        <input type="submit" value="전송">
+        <input type="reset" value="취소">
+    </form>
+    <hr>
+    <form action="#" id="form2">
+        <input type="text" placeholder="userId"> <br>
+        <input type="password"  placeholder="userPwd"> <br>
+        <input type="text" placeholder="userName"> <br>
+        <input type="email" placeholder="useremail"> <br><br>
+        <input type="submit" value="전송">
+        <input type="reset" value="취소">
+    </form>    
+
+
+
+    <script>
+        // js 영역 
+                    // jq선택자 
+
+            // css() 메서드 : jQuery 선택자한테 css 적용 
+
+            // CSS 메소드1 -  한개만 속성과 값을 넣는 경우 : setter  
+            // $('선택자').css('css속성','값');
+            // 메서드 체이닝
+            // $('선택자').css('css속성1','값1').css('css속성2','값2');
+
+            // CSS 메소드2 -  다중으로 속성과 값을 넣는 경우  : setter  
+            // $('선택자').css({'css속성1':'값1', 'css속성2':'값2'...});
+            /*
+                // css 선택자 지정방식 
+                선택자 {속성1:값1; 속성2:값2; ...}
+            */
+
+
+            // css 메소드3 - 적용되어 있는 css속성의 값 표시 : getter
+            // $('선택자').css('css속성');
+
+        $(function() {
+            // jq 영역
+            // h1 태그를 선택자로 지정해서 css 적용
+            $('h1')
+                .css('text-align', 'center')
+                .css('color','orange');
+                
+            console.log($('li'));
+
+            // #box1 a 선택자로 지정해서 css 적용
+            $('#box1 a')
+                .css({'color':'green', 'text-decoration':'none'});
+
+            // #box1 a 선택자에 적용된 css 속성의 값을 콘솔창에 출력 
+            console.log('글자색상값은?', $('#box1 a').css('color'));    
+            console.log('밑줄 스타일 속성값은?', $('#box1 a').css('text-decoration')); 
+            
+            // 순서와 관련된 선택자 
+            // :odd 짝수 
+            // :even 홀수
+            // :eq(인덱스) - 0부터 시작 
+            // :lt(인덱스) - 인덱스보다 작은 순서 
+            // :gt(인덱스) - 인덱스보다 큰 순서  
+
+            // #box1 li 짝수번째 홀수번째 요소에 css 적용 
+            $('#box1 li:odd')
+                .css({'background-color':'gold', 'list-style-type':'none'});
+            $('#box1 li:even')
+                .css({'background-color':'orange', 'list-style-type':'circle'});
+            
+            // #box2 li n번째 요소에 css 적용 
+            $('#box2 li:eq(1)')
+                .css('background-color','lightpink');
+
+            // n번째 보다 작은 요소 
+            $('#box2 li:lt(3)')
+                .css({  'border-style':'solid', 
+                        'border-color':'black', 
+                        'border-width':'2px'});  
+            // n번째 보다 큰 요소 
+            $('#box2 li:gt(4)')
+                .css({  'border-style':'solid', 
+                        'border-color':'darkred', 
+                        'border-width':'2px'});
+
+            // 속성과 값과 관련된 선택자 
+            // $('[속성]') : 같은 속성이 있는 것들
+            // $([속성=값]) : 같은 속성의 값들이 있는 것들 
+            // $(':값') : 동일한값을 갖는 선택자, input 태그에서 주로 적용 
+
+            // type="password" 
+            $('[type=password]').css('background-color','lightgreen');
+
+            // #form2 type="email"
+            $('#form2 [type=email]').css('background-color','gold');
+
+            // type 값이 submit
+            $('#form1 :submit')
+                .css({'background-color':'black', 'color':'white'});
+
+
+        });
+
+    </script>
+    
+</body>
+</html>

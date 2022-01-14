@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>jQuery 선택자</title>
+    <!-- CDN 방식으로 jquery 연결 -->
+    <!-- https://developers.google.com/speed/libraries#jquery -->
+    <!-- code.jquery.com -->
+    <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script> -->
+
+    <!-- 로컬상의 jquery 파일 연결 -->
+    <script src="jquery.min.js"></script>
+
+    <!-- 클래스 정의 -->
+    <style>
+        .style1 {
+           border:1px solid black; 
+           border-radius: 10px; 
+           padding:10px;
+        }
+        .style2 {
+            background-color: crimson;
+            color:white;
+        }
+    </style>
+</head>
+<body>
+    <h1>jQuery 메서드</h1>
+    <hr>
+    <div id="messageBox">
+        <h2>messageBox</h2>
+    </div>
+    <hr>
+    <div id="box1">
+        <h2>box1</h2>
+        <h3>H3 Tag</h3>
+        <ul>
+          <li><a href="">Menu1</a></li>
+          <li><a href="">Menu2</a></li>
+          <li><a href="">Menu3</a></li>
+          <li><a href="">Menu4</a></li>
+        </ul>
+        <dl>
+          <dt>제목1</dt>
+          <dd>내용1</dd>
+        </dl>
+    </div>
+    <hr>
+    <div id="box2" class="style1">
+        <h2>box2</h2>
+        <h3 class="style2">H3 Tag</h3>
+        <ul>
+          <li><a href="http://naver.com" target="_blank">Naver</a></li>
+          <li><a href="">Menu2</a></li>
+          <li><a href="">Menu3</a></li>
+          <li><a href="">Menu4</a></li>
+          <li><a href="">Menu5</a></li>
+          <li><a href="">Menu6</a></li>
+          <li><a href="">Menu7</a></li>
+        </ul>
+        <dl>
+          <dt>제목</dt>
+          <dd>내용</dd>
+        </dl>
+    </div>
+    <hr>
+    <!-- 폼문서 예제 -->
+    <form action="#" id="form1">
+        <input type="text" placeholder="userId" value="jica1234"> <br>
+        <input type="password"  placeholder="userPwd"> <br>
+        <input type="text" placeholder="userName"> <br>
+        <input type="email" placeholder="useremail"> <br><br>
+        <input type="submit" value="전송">
+        <input type="reset" value="취소">
+    </form>
+    <hr>
+    <form action="#" id="form2">
+        <input type="text" placeholder="userId"> <br>
+        <input type="password"  placeholder="userPwd"> <br>
+        <input type="text" placeholder="userName"> <br>
+        <input type="email" placeholder="useremail"> <br><br>
+        <input type="submit" value="전송">
+        <input type="reset" value="취소">
+    </form>    
+
+
+
+    <script>
+        // $(선택자).addClass(클래스이름) : 클래스 적용 
+        // $(선택자).removeClass(클래스이름) : 클래스 해제
+        // $(선택자).toggleClass(클래스이름) : 클래스적용해제 반복 
+        // $(선택자).hasClass(클래스이름) : 클래스 적용여부 true/false
+
+        $(function() {
+            // 특정 선택자에 클래스 적용 
+            $('#box1').addClass('style1');
+            $('#box1 h3').addClass('style2');
+
+            // 특정 클래스가 적용되었는가? => 콘솔창에 표시 
+            console.log($('#box1').hasClass('style1')); // true
+            console.log($('#box1').hasClass('style2')); // false
+
+            // 특정 선택자에 적용된 클래스 해제 
+            $('#box2').removeClass('style1');
+            console.log($('#box2').hasClass('style1'));
+
+            // 특정 선택자에 적용된 클래스 토글 기능 테스트 
+            console.log("==================");
+            $('#box2 h3').toggleClass('style2');
+            console.log($('#box2 h3').hasClass('style2')); // false
+            $('#box2 h3').toggleClass('style2');
+            console.log($('#box2 h3').hasClass('style2')); // true
+
+            // HTML 태그와 관련된 메소드
+            // attr(속성) : 속성 읽기 getter
+            // attr(속성, 값) : 속성 값 지정 setter 
+            // removeAttr(속성) : 속성제거 
+            // text() : 텍스트 getter, setter
+            // html() : html getter, setter
+            // val() : 텍스트필드 등의 value 값의 getter, setter
+
+            // #box2 ul li:eq(0) a
+            // #box2 ul li:first-child a
+            console.log('href 값은?', $('#box2 ul li:eq(0) a').attr('href'));
+            console.log('target 값은?', $('#box2 ul li:eq(0) a').attr('target'));
+
+            // #box2 ul li:eq(1) a
+            // #box2 ul li:nth-child(2) a
+            // $('#box2 ul li:eq(1) a').css('font-weight','bold');
+            $('#box2 ul li:eq(1) a')
+                .css('font-weight','bold')
+                .attr('href', 'http://google.com')
+                .attr('target', '_blank');
+            console.log('==================================');    
+            console.log('href 값은?', $('#box2 ul li:eq(1) a').attr('href'));
+            console.log('target 값은?', $('#box2 ul li:eq(1) a').attr('target'));
+
+            // #box1 dl dt
+            // #box1 dl dd
+            $('#box1 dl dt')
+                .css('color','red')
+                .text('오늘의 메뉴');
+            $('#box1 dl dd')
+                .css('color','blue')
+                .html('<i>떡국, 나박김치, 식혜</i>');
+
+            console.log('==================================');    
+            console.log('dt안의 텍스트?', $('#box1 dl dt').text());
+            console.log('dd안의 텍스트?', $('#box1 dl dd').html());
+
+            // #form1 [placeholder="userId"]
+            // #form1 [placeholder="userName"]
+            $('#form1 [placeholder="userId"]')
+                .css('background-color', 'lightpink')
+                .val('helloWorld');
+            $('#form1 [placeholder="userName"]')
+                .css('background-color', 'lightpink')
+                .val('helloJava');                
+            
+            console.log('==================================');    
+            console.log('텍스트필드의 value 값?', 
+                        $('#form1 [placeholder="userId"]').val());
+            console.log('텍스트필드의 value 값?', 
+                        $('#form1 [placeholder="userName"]').attr('value')); 
+                        // undefined
+            console.log('텍스트필드의 value 값?', 
+                        $('#form1 [placeholder="userName"]').val());   
+            
+            // prompt()를 이용해서 사용자 아이디와 사용자 이름을 입력받는다. 
+            // 특정 영역에 인사말을 출력한다. 
+            var userId = prompt('아이디를 입력하세요...'); 
+            var userName = prompt('이름을 입력하세요...'); 
+            $('#messageBox h2')
+                .text('환영합니다.' + userId + ' ' + userName + '님...');
+
+
+
+
+
+
+
+        });
+
+    </script>
+    
+</body>
+</html>

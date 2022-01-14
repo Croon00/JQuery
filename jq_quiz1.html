@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>jQuery 퀴즈</title>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script> 
+</head>
+<body>
+<!-- (div#quiz$>(h2{quiz$}+(ul>(li{list$})*5)))*4-->
+<div id="quiz1">
+  <h2>quiz1</h2>
+  <ul>
+    <li>list1</li>
+    <li>list2</li>
+    <li>list3</li>
+    <li>list4</li>
+    <li>list5</li>
+  </ul>
+</div>
+<div id="quiz2">
+  <h2>quiz2</h2>
+  <ul>
+    <li>list1</li>
+    <li>list2</li>
+    <li>list3</li>
+    <li>list4</li>
+    <li>list5</li>
+  </ul>
+</div>
+<div id="quiz3">
+  <h2>quiz3</h2>
+  <ul>
+    <li>list1</li>
+    <li>list2</li>
+    <li>list3</li>
+    <li>list4</li>
+    <li>list5</li>
+  </ul>
+</div>
+<div id="quiz4">
+  <h2>quiz4</h2>
+  <ul>
+    <li>list1</li>
+    <li>list2</li>
+    <li>list3</li>
+    <li>list4</li>
+    <li>list5</li>
+  </ul>
+</div>
+
+
+
+
+<script>
+// 퀴즈 : 선택자와 CSS
+
+// 선택자:first-child/last-child/nth-child(숫자)
+// 선택자:even/odd 
+// 선택자:eq(indexNum) - 예) li:eq(0) // li의 인덱스가 0
+// 선택자:lt(indexNum) - 예) li:lt(3) // li의 인덱스가 3보다 작다. 시작인덱스 0  
+// 선택자:gt(indexNum) - 예) li:gt(2) // li의 인덱스가 2보다 크다. 시작인덱스 0  
+
+
+// 1) #quiz1 안의 ul의 첫번째 li 요소에 css 적용하기 
+
+
+// 2) #quiz1 안의 ul의 마지막 li 요소에 css 적용하기 
+
+
+// 3) #quiz2 안의 ul의 짝수번째 li 요소에 css 적용하기 
+
+
+// 4) #quiz3 안의 ul의 3번째 li 요소에 css 적용 후 console 창에 css 속성에 적용된 값 출력하기 
+
+
+// 5) #quiz4 안의 ul의 li 요소에서 첫번째를 제외한 나머지 li 요소에 css 적용하기 
+
+</script>
+
+
+
+
+</body>
+</html>

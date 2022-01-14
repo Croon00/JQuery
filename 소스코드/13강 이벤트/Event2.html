@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script src="http://code.jquery.com/jquery-3.2.1.min.js"></script>
+<script>
+	$(function(){
+		$("#a1").on("click", function(){
+			alert('a1');
+		});
+		
+		$("#a2").one("click", function(){
+			alert("a2");
+		});
+		
+		$("#a3").on({
+			click : function(){
+				alert("click");
+			},
+			mouseenter : function(){
+				$("#a3").css("background-color", "black");
+			},
+			mouseleave : function(){
+				$("#a3").css("background-color", "white");
+			}
+		});
+	});
+	
+	function remove_event(){
+		$("#a1").off("click");
+	}
+</script>
+</head>
+<body>
+	<h3 id="a1">on</h3>
+	<button type="button" onclick="remove_event()">이벤트 제거</button>
+	<br/>
+
+	<h3 id="a2">one</h3>
+	
+	<h3 id="a3">event setting</h3>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+

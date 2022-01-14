@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>jQuery 설치</title>
+    <!-- CDN 방식으로 jQuery 연결 -->
+    <!-- https://developers.google.com/speed/libraries#jquery -->
+    <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script> -->
+
+    <!-- jquery 파일 연결 (local 상에서) -->
+    <script> src= "JQuery/jquery.min.js"></script>
+</head>
+<body>
+    <h1>jQuery 설치</h1>
+    <hr>
+    <h2>Hello world</h2>
+    <script>
+        // js 영역
+        $(function(){
+            // jquery 영역
+            // $(선택자).메서드1(),메서드2()...
+            // h2 요소를 화면에 보이지 않게 명령 실행
+            // $(선택자).hide()
+            $('h2').hide();
+        });
+    </script>
+    
+</body>
+</html>
